@@ -21,7 +21,7 @@ var cacheBust = module.exports = function cacheBust (options) {
 	return function (ressource, type) {
 		type = type || getType(ressource);
 		if (type === 'js') {
-			return '<script type="text/js" src="' + ressource + '?v=' + querystring + '"></script>';
+			return '<script src="' + ressource + '?v=' + querystring + '"></script>';
 		} else if (type === 'css') {
 			return '<link rel="stylesheet" href="' + ressource + '?v=' + querystring + '" />';
 		}

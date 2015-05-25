@@ -34,14 +34,14 @@ describe('cacheBust', function () {
 		it('should not append a timestamp', function () {
 			var fn = cacheBust({ packageLocation: './test/package-test.json' });
 			var out = fn('/scripts/app.js');
-			assert.equal(out, '<script type="text/js" src="/scripts/app.js?v=1.0.0"></script>');
+			assert.equal(out, '<script src="/scripts/app.js?v=1.0.0"></script>');
 		});
 	});
 
 	it('should generate a script tag for js files', function () {
 		var fn = cacheBust({ packageLocation: './test/package-test.json' });
 		var out = fn('/scripts/app.js');
-		assert.equal(out, '<script type="text/js" src="/scripts/app.js?v=1.0.0-12345"></script>');
+		assert.equal(out, '<script src="/scripts/app.js?v=1.0.0-12345"></script>');
 	});
 
 	it('should generate a link tag for css files', function () {
@@ -53,6 +53,6 @@ describe('cacheBust', function () {
 	it('should use a type argument if given', function () {
 		var fn = cacheBust({ packageLocation: './test/package-test.json' });
 		var out = fn('/scripts/app', 'js');
-		assert.equal(out, '<script type="text/js" src="/scripts/app?v=1.0.0-12345"></script>');
+		assert.equal(out, '<script src="/scripts/app?v=1.0.0-12345"></script>');
 	});
 });
