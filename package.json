@@ -1,0 +1,24 @@
+{
+  "name": "cache-bust",
+  "version": "0.0.1",
+  "description": "A simplistic cache buster that appends the current verison for production environments and the current time otherwise (great for development)",
+  "main": "index.js",
+  "repository": "git@github.com:davidlanger/cache-bust.git",
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha"
+  },
+  "keywords": [
+    "express",
+    "cache",
+    "busting",
+    "cacehbusting",
+    "query",
+    "version"
+  ],
+  "author": "David Langer",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^2.2.5",
+    "sinon": "^1.14.1"
+  }
+}
