@@ -1,5 +1,5 @@
 {
-  "name": "cache-bust",
+  "name": "cache-busted",
   "version": "0.0.1",
   "description": "A simplistic cache buster that appends the current verison for production environments and the current time otherwise (great for development)",
   "main": "index.js",
@@ -11,7 +11,7 @@
     "express",
     "cache",
     "busting",
-    "cacehbusting",
+    "cachebusting",
     "query",
     "version"
   ],
