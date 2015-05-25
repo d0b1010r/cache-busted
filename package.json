@@ -1,7 +1,7 @@
 {
   "name": "cache-busted",
   "version": "0.0.1",
-  "description": "A simplistic cache buster that appends the current verison for production environments and the current time otherwise (great for development)",
+  "description": "A simplistic cache buster that appends the current version for production environments and the current time otherwise (great for development)",
   "main": "index.js",
   "repository": "git@github.com:davidlanger/cache-bust.git",
   "scripts": {
