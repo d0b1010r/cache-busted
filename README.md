@@ -27,9 +27,9 @@ Output:
 ```html
 <head>
   <title>Hello World</title>
-  <script type="text/js" src="/public/js/app.js" />
-  <link rel="stylesheet" href="/public/css/style.css" />
-  <link rel="stylesheet" href="/public/css/style.css" />
+  <script type="text/js" src="/public/js/app.js?v=1.0.0" />
+  <link rel="stylesheet" href="/public/css/style.css?v=1.0.0" />
+  <link rel="stylesheet" href="/public/css/style.css?v=1.0.0" />
 </head>
 ```
 
@@ -38,3 +38,10 @@ Output:
 `version`: Use this exact version. Default: null which will make this module look for a package.json in the folder above
 `packageLocation`: Path to the `package.json`. Defaults to `../../package.json`.
 
+## Difference production and development
+
+The above example is the output if the NODE_ENV environment variable is set to `production` or `integration`. Otherwise it also appends the current timestamp so that each request will load all new dependencies. Example:
+
+```
+<link rel="stylesheet" href="/public/css/style.css?v=1.0.0-1432576223502" />
+```
