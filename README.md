@@ -6,7 +6,7 @@ Use cache busting in express. Adds a version query string to ressources.
 
 ```js
 var express = require('express');
-var cacheBust = require('cache-bust');
+var cacheBust = require('cache-busted');
 
 var app = express();
 cacheBust.handler(app);
@@ -42,6 +42,6 @@ Output:
 
 The above example is the output if the NODE_ENV environment variable is set to `production` or `integration`. Otherwise it also appends the current timestamp so that each request will load all new dependencies. Example:
 
-```
+```html
 <link rel="stylesheet" href="/public/css/style.css?v=1.0.0-1432576223502" />
 ```
