@@ -44,6 +44,12 @@ describe('cacheBust', function () {
 		assert.equal(out, '<script src="/scripts/app.js?v=1.0.0-12345"></script>');
 	});
 
+	it('should generate a script tag for jsx files', function () {
+		var fn = cacheBust({ packageLocation: './test/package-test.json' });
+		var out = fn('/scripts/app.jsx');
+		assert.equal(out, '<script src="/scripts/app.jsx?v=1.0.0-12345"></script>');
+	});
+
 	it('should generate a link tag for css files', function () {
 		var fn = cacheBust({ packageLocation: './test/package-test.json' });
 		var out = fn('/scripts/style.css');
