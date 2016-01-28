@@ -7,11 +7,11 @@ var cacheBust = module.exports = function cacheBust (options) {
 		useGitHash: false
 	};
 
-	options = {
+	options = options ? {
 		version: options.version || defaults.version,
 		packageLocation: options.packageLocation || defaults.packageLocation,
 		useGitHash: options.useGitHash || defaults.useGitHash,
-	};
+	} : defaults;
 	if (!options.version) {
 		try {
 			options.version = require(options.packageLocation).version;
