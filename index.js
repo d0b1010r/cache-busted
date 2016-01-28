@@ -24,6 +24,8 @@ var cacheBust = module.exports = function cacheBust (options) {
 			return '<script src="' + ressource + '?v=' + querystring + '"></script>';
 		} else if (type === 'css') {
 			return '<link rel="stylesheet" href="' + ressource + '?v=' + querystring + '" />';
+		} else {
+			throw new Error('Unknown extension, currently only css, js and jsx are automatically recognized. When using another extension specify either js or css as the second parameter')
 		}
 	};
 };
