@@ -1,7 +1,16 @@
+var gitDescribe = require('git-describe').gitDescribeSync;
+
 var cacheBust = module.exports = function cacheBust (options) {
-	options = options || {
+	var defaults = {
 		version: null,
-		packageLocation: __dirname + '/../../package.json'
+		packageLocation: __dirname + '/../../package.json',
+		useGitHash: false
+	};
+
+	options = {
+		version: options.version || defaults.version,
+		packageLocation: options.packageLocation || defaults.packageLocation,
+		useGitHash: options.useGitHash || defaults.useGitHash,
 	};
 	if (!options.version) {
 		try {
@@ -11,11 +20,16 @@ var cacheBust = module.exports = function cacheBust (options) {
 		}
 	}
 
+	var gitHash = '';
+	if (options.useGitHash) {
+		gitHash = cacheBust.getGitHash();
+	}
+
 	var querystring;
 	if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'integration') {
-		querystring = options.version;
+		querystring = options.version + (gitHash ? '-' + gitHash : '');
 	} else {
-		querystring = options.version + '-' + cacheBust.getTimestamp();
+		querystring = options.version + (gitHash ? '-' + gitHash : '') + '-' + cacheBust.getTimestamp();
 	}
 
 	return function (ressource, type) {
@@ -37,6 +51,10 @@ cacheBust.handler = function handler (app, options) {
 cacheBust.getTimestamp = function getTimestamp () {
 	return new Date().valueOf();
 };
+
+cacheBust.getGitHash = function getGitHash () {
+	return gitDescribe().hash;
+}
 
 function getType (ressource) {
 	var extension = ressource.split('.').pop();

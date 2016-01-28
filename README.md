@@ -35,8 +35,11 @@ Output:
 
 ## Options
 
-`version`: Use this exact version. Default: null which will make this module look for a package.json in the folder above
+Add the options to the `handler` call: `cacheBust.handler(app, options)`
+
+`version`: Use this exact version. Default: null which will make this module look for a package.json in the folder below
 `packageLocation`: Path to the `package.json`. Defaults to `../../package.json`.
+`useGitHash`: (optional) The current git hash which will be appended to the version.
 
 ## Difference production and development
 

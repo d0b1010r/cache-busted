@@ -7,11 +7,13 @@ var express = require('express');
 
 describe('cacheBust', function () {
 	beforeEach(function () {
-		sinon.stub(cacheBust, 'getTimestamp').returns('12345');
+		this.sandbox = sinon.sandbox.create();
+		this.sandbox.stub(cacheBust, 'getTimestamp').returns('12345');
+		this.sandbox.stub(cacheBust, 'getGitHash').returns('abc123');
 	});
 
 	afterEach(function () {
-		cacheBust.getTimestamp.restore();
+		this.sandbox.restore();
 	});
 
 	describe('express integration', function () {
@@ -60,5 +62,11 @@ describe('cacheBust', function () {
 		var fn = cacheBust({ packageLocation: './test/package-test.json' });
 		var out = fn('/scripts/app', 'js');
 		assert.equal(out, '<script src="/scripts/app?v=1.0.0-12345"></script>');
+	});
+
+	it('should add a git hash if option useGitHash is set', function () {
+		var fn = cacheBust({ packageLocation: './test/package-test.json', useGitHash: true });
+		var out = fn('/scripts/app', 'js');
+		assert.equal(out, '<script src="/scripts/app?v=1.0.0-abc123-12345"></script>');
 	});
 });
