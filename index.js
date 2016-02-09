@@ -26,7 +26,7 @@ var cacheBust = module.exports = function cacheBust (options) {
 	}
 
 	var querystring;
-	if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'integration') {
+	if (process.env.NODE_ENV === 'production') {
 		querystring = options.version + (gitHash ? '-' + gitHash : '');
 	} else {
 		querystring = options.version + (gitHash ? '-' + gitHash : '') + '-' + cacheBust.getTimestamp();
